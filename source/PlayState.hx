@@ -68,6 +68,7 @@ class PlayState extends MusicBeatState
 {
 	public static var instance:PlayState = null;
 
+	public static var playCutscene:Bool = false;
 	public static var curStage:String = '';
 	public static var SONG:SwagSong;
 	public static var isStoryMode:Bool = false;
@@ -1060,6 +1061,15 @@ class PlayState extends MusicBeatState
 							});
 						});
 					});
+				case 'what':
+					if (playCutscene) {
+						FlxTransitionableState.skipNextTransIn = false;
+						FlxTransitionableState.skipNextTransOut = false;
+						LoadingState.loadAndSwitchState(new VideoState("assets/videos/Cutscene1Subtitles.webm", new PlayState()));
+						playCutscene = false;
+					} else {
+						startCountdown();
+					}
 				case 'senpai':
 					schoolIntro(doof);
 				case 'roses':

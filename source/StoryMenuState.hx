@@ -278,7 +278,10 @@ class StoryMenuState extends MusicBeatState
 			}
 
 			PlayState.storyDifficulty = curDifficulty;
-
+			switch (StringTools.replace(PlayState.storyPlaylist[0]," ", "-").toLowerCase()) {
+				case 'what':
+					PlayState.playCutscene = true;
+			}
 			PlayState.SONG = Song.loadFromJson(StringTools.replace(PlayState.storyPlaylist[0]," ", "-").toLowerCase() + diffic, StringTools.replace(PlayState.storyPlaylist[0]," ", "-").toLowerCase());
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
